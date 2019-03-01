@@ -1,0 +1,20 @@
+---
+- name: Removing the VNF Bootstrapping ISO from the datastore
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Remove the bootstrapping ISO from the datastore
+      vsphere_file:
+        host: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        datastore: "{{ vcsa.datastore }}"
+        path: "{{ item.path }}"
+        validate_certs: False
+        state: absent
+      with_items:
+        - { path: "/bts_active_{{ panos_ha.a_ip }}.iso" }
+        - { path: "/bts_passive_{{ panos_ha.p_ip }}.iso" }

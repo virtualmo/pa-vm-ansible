@@ -1,0 +1,56 @@
+---
+- name: Perpare the VNF Environment (Resource Pool, Port Group, and Folder)
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Create Resource Pool
+      vmware_resource_pool:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        mem_shares: 'normal'
+        mem_limit: '-1'
+        mem_reservation: '0'
+        mem_expandable_reservations: 'True'
+        cpu_shares: 'normal'
+        cpu_limit: '-1'
+        cpu_reservation: '0'
+        cpu_expandable_reservations: 'True'
+        state: 'present'
+        validate_certs: False
+
+    - name: Create Portgroup for Trust and Untrust traffic
+      vmware_dvs_portgroup:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        portgroup_name: "{{ item.pg }}"
+        switch_name: "{{ vnf.switch_name }}"
+        vlan_id: "{{ item.vlan }}"
+        num_ports: '120'
+        portgroup_type: 'earlyBinding'
+        state: 'present'
+        validate_certs: False
+        network_policy:
+          promiscuous_mode: True
+          forged_transmits: True
+          mac_changes: True
+      with_items:
+        - { pg: "{{ vnf.untrust_pg_name }}", vlan: '0'}
+        - { pg: "{{ vnf.trust_pg_name }}", vlan: '0'}
+
+    - name: Create Folder for the PA-VM VNF
+      vmware_folder:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        folder: "{{ vnf.resource_pool }}"
+        validate_certs: False
+        state: present

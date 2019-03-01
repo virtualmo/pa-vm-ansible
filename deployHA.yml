@@ -1,0 +1,5 @@
+---
+- import_playbook: playbooks/prepareActiveBootstrappingISO.yml
+- import_playbook: playbooks/preparePassiveBootstrappingISO.yml
+- import_playbook: playbooks/prepareEnvironmentHA.yml
+- import_playbook: playbooks/deployVNFHA.yml

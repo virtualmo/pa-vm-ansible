@@ -1,0 +1,32 @@
+---
+- name: Delete PA-VM VNF
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Shutdown PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_s.hostname }}"
+        state: "poweredoff"
+        validate_certs: False
+
+    - name: Remove PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_s.hostname }}"
+        state: "absent"
+        validate_certs: False

@@ -1,0 +1,52 @@
+---
+- name: Deploy PA-VM VNF and attach the bootstrapping iso
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Deploy PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/{{ vnf.resource_pool }}"
+        name: "{{ panos_s.hostname }}"
+        state: "poweredoff"
+        guest_id: centos64Guest
+        validate_certs: False
+        template: "{{ vnf.template_name }}"
+        networks:
+        - name: "{{ vnf.mgmt_pg_name }}"
+        - name: "{{ vnf.untrust_pg_name }}"
+        - name: "{{ vnf.trust_pg_name }}"
+    - name: Attach the bootstrapping ISO to the PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/{{ vnf.resource_pool }}"
+        name: "{{ panos_s.hostname }}"
+        state: "present"
+        validate_certs: False
+        cdrom:
+          type: iso
+          iso_path: "[{{ vcsa.datastore }}] bts_{{ panos_s.ip_address }}.iso"
+    - name: Power on the PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_s.hostname }}"
+        state: "poweredon"
+        validate_certs: False

@@ -1,0 +1,37 @@
+---
+- name: Delete Active and PassivePA-VM VNF
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Shutdown the Active and Passive PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ item.name }}"
+        state: "poweredoff"
+        validate_certs: False
+      with_items:
+        - { name: "{{ panos_ha.a_hostname }}" }
+        - { name: "{{ panos_ha.p_hostname }}" }
+    - name: Delete the Active and Passive PA-VM VNF from datastore
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ item.name }}"
+        state: "absent"
+        validate_certs: False
+      with_items:
+        - { name: "{{ panos_ha.a_hostname }}" }
+        - { name: "{{ panos_ha.p_hostname }}" }

@@ -1,0 +1,17 @@
+---
+- name: Deactive the VNF licenses
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Deactive Active and Passive Licenses
+      panos_de_lic:
+        ip_address: "{{ item.ip }}"
+        username: "{{ lic.username }}"
+        password: "{{ lic.password }}"
+        auto: True
+        api_key: "{{ lic.api_key }}"
+      with_items:
+        - { ip: "{{ panos_ha.a_ip }}" }
+        - { ip: "{{ panos_ha.p_ip }}" }

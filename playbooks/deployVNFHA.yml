@@ -1,0 +1,113 @@
+---
+- name: Deploy PA-VM VNF, Apply Affinity rule, attach the bootstrapping iso, And power on the VMs
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Deploy Active PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/{{ vnf.resource_pool }}"
+        name: "{{ panos_ha.a_hostname }}"
+        state: "poweredoff"
+        guest_id: centos64Guest
+        validate_certs: False
+        template: "{{ vnf.template_name }}"
+        networks:
+        - name: "{{ vnf.mgmt_pg_name }}"
+        - name: "{{ vnf.ha2_pg_name }}"
+        - name: "{{ vnf.untrust_pg_name }}"
+        - name: "{{ vnf.trust_pg_name }}"
+    - name: Attach the bootstrapping ISO to the Active PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/{{ vnf.resource_pool }}"
+        name: "{{ panos_ha.a_hostname }}"
+        state: "present"
+        validate_certs: False
+        cdrom:
+          type: iso
+          iso_path: "[{{ vcsa.datastore }}] bts_active_{{ panos_ha.a_ip }}.iso"
+    - name: Power on the Active PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_ha.a_hostname }}"
+        state: "poweredon"
+        validate_certs: False
+    - name: Deploy Passive PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/{{ vnf.resource_pool }}"
+        name: "{{ panos_ha.p_hostname }}"
+        state: "poweredoff"
+        guest_id: centos64Guest
+        validate_certs: False
+        template: "{{ vnf.template_name }}"
+        networks:
+        - name: "{{ vnf.mgmt_pg_name }}"
+        - name: "{{ vnf.ha2_pg_name }}"
+        - name: "{{ vnf.untrust_pg_name }}"
+        - name: "{{ vnf.trust_pg_name }}"
+    - name: Attach the bootstrapping ISO to the Passive PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/{{ vnf.resource_pool }}"
+        name: "{{ panos_ha.p_hostname }}"
+        state: "present"
+        validate_certs: False
+        cdrom:
+          type: iso
+          iso_path: "[{{ vcsa.datastore }}] bts_passive_{{ panos_ha.p_ip }}.iso"
+    - name: Apply VM-VM Anti-Affinity rule
+      vmware_vm_vm_drs_rule:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        cluster_name: "{{ vcsa.cluster }}"
+        drs_rule_name: "{{ panos_ha.vnf_affinity_rule }}"
+        validate_certs: no
+        enabled: True
+        mandatory: True
+        affinity_rule: False
+        vms:
+            - "{{ panos_ha.a_hostname }}"
+            - "{{ panos_ha.p_hostname }}"
+    - name: Power on the Passive PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_ha.p_hostname }}"
+        state: "poweredon"
+        validate_certs: False

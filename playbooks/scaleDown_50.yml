@@ -1,0 +1,49 @@
+---
+- name: Scale Down the PA-VM to VM-50
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Shutdown PA-VM VNF in order to modify the HW resources
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_s.hostname }}"
+        state: "poweredoff"
+        validate_certs: False
+    - name: Modify the CPU and Memory to match the requirement of new license
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_s.hostname }}"
+        hardware:
+            memory_mb: 4608
+            num_cpus: 2
+        validate_certs: False
+    - name: Power on the PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        folder: "/vm/{{ vnf.resource_pool }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ panos_s.hostname }}"
+        state: "poweredon"
+        validate_certs: False
+    - name: License the PA-VM with the new Model
+      panos_lic:
+        ip_address: "{{ panos_s.ip_address }}"
+        username: "{{ lic.username }}"
+        password: "{{ lic.password }}"
+        auth_code: "{{ lic.authcode_vm50 }}"

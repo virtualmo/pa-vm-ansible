@@ -1,0 +1,63 @@
+---
+- name: Prepare PA-VM VNF Bootstrapping ISO and upload it to the datastore
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Create the bootstrapping directory structure
+      file:
+        path: "{{ bts.path }}/{{ item.f }}"
+        state: directory
+        mode: 0755
+      with_items:
+        - { f: "bts" }
+        - { f: "bts/config" }
+        - { f: "bts/license" }
+        - { f: "bts/software" }
+        - { f: "bts/content" }
+    - name: Create the init-cfg.txt file and add the bootstrapping info.
+      lineinfile:
+        dest: "{{ bts.path }}/bts/config/init-cfg.txt"
+        state: present
+        create: yes
+        line: "{{ item.line }}"
+      with_items:
+        - { line: "type=static"}
+        - { line: "ip-address={{ panos_s.ip_address }}" } 
+        - { line: "default-gateway={{ panos_s.default_gateway }}" }
+        - { line: "netmask={{ panos_s.netmask }}" }
+        - { line: "hostname={{ panos_s.hostname }}" }
+        - { line: "vm-auth-key={{ panos_s.vm_auth_key }}" }
+        - { line: "panorama-server={{ panos_s.panorama_server }}" }
+        - { line: "tplname={{ panos_s.tplname }}" }
+        - { line: "dgname={{ panos_s.dgname }}" }
+        - { line: "dns-primary={{ panos_s.dns_primary }}" }
+        - { line: "dns-secondary={{ panos_s.dns_secondary }}" }
+    - name: Create license Authcode file and add the authcode
+      lineinfile:
+        dest: "{{ bts.path }}/bts/license/authcodes"
+        state: present
+        create: yes
+        line: "{{ lic.authcode_vm50 }}"
+    - name: Burn an ISO image
+      command: hdiutil makehybrid -o {{ bts.path }}/bts_{{ panos_s.ip_address }}.iso {{ bts.path }}/bts -iso -joliet
+    - name: Upload the ISO to the Datastore
+      vsphere_copy: 
+        host: "{{ vcsa.hostname }}" 
+        login: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        src: "{{ bts.path }}/bts_{{ panos_s.ip_address}}.iso"
+        datacenter: "{{ vcsa.datacenter }}"
+        datastore: "{{ vcsa.datastore }}"
+        path: "/bts_{{ panos_s.ip_address}}.iso"
+        validate_certs: False
+      tags: upload
+    - name: Delete The ISO file from local folder
+      file:
+        path: "{{ bts.path }}/bts_{{ panos_s.ip_address }}.iso"
+        state: absent
+    - name: Delete the local bootstrapping directory
+      file:
+        path: "{{ bts.path }}/bts"
+        state: absent

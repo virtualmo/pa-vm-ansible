@@ -1,0 +1,42 @@
+---
+- name: Removing the VNF environment (Resource Pool, Port Group, and Folder)
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Remove Resource Pool
+      vmware_resource_pool:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        resource_pool: "{{ vnf.resource_pool }}"
+        state: "absent"
+        validate_certs: False
+    - name: Remove Trust and Untrsut Portgroups
+      vmware_dvs_portgroup:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        portgroup_name: "{{ item.pg }}"
+        switch_name: "{{ vnf.switch_name }}"
+        vlan_id: "{{ item.vlan }}"
+        num_ports: '120'
+        portgroup_type: 'earlyBinding'
+        state: "absent"
+        validate_certs: False
+      with_items:
+        - { pg: "{{ vnf.untrust_pg_name }}", vlan: '0'}
+        - { pg: "{{ vnf.trust_pg_name }}", vlan: '0'}
+    - name: Remove Folder
+      vmware_folder:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        cluster: "{{ vcsa.cluster }}"
+        folder: "{{ vnf.resource_pool }}"
+        validate_certs: False
+        state: absent

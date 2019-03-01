@@ -1,0 +1,45 @@
+---
+- name: Apply VM-VM Anti-Affinity rule And power on the VMs
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../variables.yml
+  tasks:
+    - name: Apply VM-VM Anti-Affinity rule
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        cluster: "{{ vcsa.cluster }}"
+        drs_rule_name: "{{ vnf_affinity.rule_name }}"
+        validate_certs: no
+        enabled: True
+        mandatory: True
+        affinity_rule: False
+        vms:
+            - "{{ vnf_active.vm_name }}"
+            - "{{ vnf_passive.vm_name }}"
+    - name: Power on the Active PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ resource_pool.name }}"
+        folder: "/vm/{{ resource_pool.name }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ vnf_active.vm_name }}"
+        state: "poweredon"
+        validate_certs: False
+    - name: Power on the Passive PA-VM VNF
+      vmware_guest:
+        hostname: "{{ vcsa.hostname }}"
+        username: "{{ vcsa.username }}"
+        password: "{{ vcsa.password }}"
+        datacenter: "{{ vcsa.datacenter }}"
+        resource_pool: "{{ resource_pool.name }}"
+        folder: "/vm/{{ resource_pool.name }}"
+        cluster: "{{ vcsa.cluster }}"
+        name: "{{ vnf_passive.vm_name }}"
+        state: "poweredon"
+        validate_certs: False
