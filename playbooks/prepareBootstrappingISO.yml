@@ -23,7 +23,7 @@
         create: yes
         line: "{{ item.line }}"
       with_items:
-        - { line: "type=static"}
+        - { line: "type=static" }
         - { line: "ip-address={{ panos_s.ip_address }}" } 
         - { line: "default-gateway={{ panos_s.default_gateway }}" }
         - { line: "netmask={{ panos_s.netmask }}" }

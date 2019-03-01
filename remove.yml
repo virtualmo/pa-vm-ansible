@@ -2,3 +2,4 @@
 - import_playbook: playbooks/deactivateLicense.yml
 - import_playbook: playbooks/removeVNF.yml
 - import_playbook: playbooks/removeEnvironment.yml
+- import_playbook: playbooks/removeBootstrappingISO.yml

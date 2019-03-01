@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - ../variables.yml
+    - ../variablesHA.yml
   tasks:
     - name: Deactive Active and Passive Licenses
       panos_de_lic:

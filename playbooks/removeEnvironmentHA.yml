@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - ../variables.yml
+    - ../variablesHA.yml
   tasks:
     - name: Remove Resource Pool
       vmware_resource_pool:

@@ -20,19 +20,17 @@ ANSIBLE_METADATA = {'status': ['preview'],
 
 DOCUMENTATION = '''
 ---
-module: panos_lic
-short_description: deactive VM capacity license either directly from the device or via the license api.
+module: panos_replace_device_sn_panorama
+short_description: Replace device SN in panorama.
 description:
-    - Deactive VM capacity license
-    - For auto deactivation the device should have Internet access.
-    - For manual deactivation the ansible controller should have Internet access.
+    - Replace device SN in panorama.
 author: "Mohanad Elamin (@mohanadelamin)"
 requirements:
     - pan-python
 options:
-    ip_address:
+    panorama_ip_address:
         description:
-            - IP address (or hostname) of PAN-OS device
+            - IP address (or hostname) of Panorama device
         required: true
     password:
         description:
@@ -41,17 +39,14 @@ options:
     username:
         description:
             - username for authentication
-        required: false
-        default: "admin"
-    api_key:
-        description:
-            - api_key to be applied for auto deactivation
         required: true
-    auto:
+    old_sn:
         description:
-            - whether to deactivate directly from the FW or from localy via the Licensing API
-        required: false
-        default: "false"
+            - old device serial number
+        required: true
+    new_sn:
+        description:
+            - new device serial number
 '''
 
 EXAMPLES = '''
@@ -60,11 +55,11 @@ EXAMPLES = '''
       tasks:
         - name: Deactivate License
           panos_de_lic:
-            ip_address: "192.168.1.1"
+            panorama_ip_address: "192.168.1.1"
             username: "admin"
             password: "paloalto"
-            auto: True
-            api_key: "XXXXXXXXXXXXXXXXXX"
+            old_sn: "XXXXXXXXXXXXXXXXXX"
+            new_sn: "yyyyyyyyyyyyyyyyyy"
 '''
 
 RETURN = '''
@@ -79,52 +74,38 @@ try:
 except ImportError:
     HAS_LIB = False
 
-def apply_api_key(xapi, module, api_key):
+
+def replace_sn(xapi, module,old_sn,new_sn):
     try:
-        xapi.op(cmd='<request><license><api-key><set><key>%s</key></set></api-key></license></request>' % api_key)
+        xapi.op(cmd='<replace><device><old>%s</old><new>%s</new></device></replace>' % (old_sn, new_sn))
     except pan.xapi.PanXapiError as msg:
         if hasattr(xapi, 'xml_document'):
             if 'Successfully' in xapi.xml_document:
                 return True
-
-        if 'not a valid API-Key' in xapi.xml_document:
-            module.fail_json(msg="Invalid API-Key")
-
-        raise
-
-    return True
-
-def deactivate_license(xapi, module):
-    try:
-        xapi.op(cmd='<request><license><deactivate><VM-Capacity><mode>auto</mode></VM-Capacity></deactivate></license></request>')
-    except pan.xapi.PanXapiError as msg:
-        if hasattr(xapi, 'xml_document'):
-            if 'Successfully' in xapi.xml_document:
-                return
         else:
             module.fail_json(msg="Unknown error!")
 
         raise
 
-    return
+    return True
 
 def main():
     argument_spec = dict(
-        ip_address=dict(required=True),
+        panorama_ip_address=dict(required=True),
         password=dict(required=True, no_log=True),
         username=dict(default='admin'),
-        api_key=dict(required=False, no_log=True),
-        auto=dict(type='bool', default=True)
+        old_sn=dict(required=True),
+        new_sn=dict(required=True),
     )
     module = AnsibleModule(argument_spec=argument_spec, supports_check_mode=False)
     if not HAS_LIB:
         module.fail_json(msg='pan-python is required for this module')
 
-    ip_address = module.params["ip_address"]
+    ip_address = module.params["panorama_ip_address"]
     password = module.params["password"]
-    auto = module.params['auto']
     username = module.params['username']
-    api_key = module.params['api_key']
+    old_sn = module.params['old_sn']
+    new_sn = module.params['new_sn']
 
     xapi = pan.xapi.PanXapi(
         hostname=ip_address,
@@ -132,17 +113,10 @@ def main():
         api_password=password
     )
 
-    if auto and not api_key:
-        module.fail_json(msg='For Auto deactivation API-KEY is required.')
-    elif auto:
-        if (not apply_api_key(xapi,module,api_key)):
-            module.exit_json(changed=False, msg="Applying license key failed")
-        else:
-            deactivate_license(xapi,module)
-            module.exit_json(changed=True, msg="VM License deactivated.")
+    if(replace_sn(xapi,module,old_sn,new_sn)):
+        module.exit_json(changed=True, msg="SN replaced from %s to %s" % (old_sn, new_sn))
     else:
-        pass
-
+        module.fail_json(msg='SN Change Failed!')
 
 if __name__ == '__main__':
     main()

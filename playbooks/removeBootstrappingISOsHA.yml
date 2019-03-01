@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - ../variables.yml
+    - ../variablesHA.yml
   tasks:
     - name: Remove the bootstrapping ISO from the datastore
       vsphere_file:

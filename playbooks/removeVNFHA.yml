@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - ../variables.yml
+    - ../variablesHA.yml
   tasks:
     - name: Shutdown the Active and Passive PA-VM VNF
       vmware_guest:

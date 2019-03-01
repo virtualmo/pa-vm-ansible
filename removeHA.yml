@@ -1,5 +1,5 @@
 ---
-#- import_playbook: playbooks/deactivateLicenseHA.yml
+- import_playbook: playbooks/deactivateLicenseHA.yml
 - import_playbook: playbooks/removeVNFHA.yml
 - import_playbook: playbooks/removeEnvironmentHA.yml
 - import_playbook: playbooks/removeBootstrappingISOsHA.yml

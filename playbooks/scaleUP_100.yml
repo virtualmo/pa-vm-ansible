@@ -5,6 +5,22 @@
   vars_files:
     - ../variables.yml
   tasks:
+    - name: Get old Serial Number
+      panos_get_sn:
+        fw_ip_address: "{{ panos_s.ip_address }}"
+        fw_password: "{{ lic.username }}"
+        fw_username: "{{ lic.password }}"
+      register: result_old
+    - name: old serial number is
+      debug:
+        var: "{{result_old.serialnumber}}"
+    - name: Deactive Licenses
+      panos_de_lic:
+        ip_address: "{{ panos_s.ip_address }}"
+        username: "{{ lic.username }}"
+        password: "{{ lic.password }}"
+        auto: True
+        api_key: "{{ lic.api_key }}"
     - name: Shutdown PA-VM VNF in order to modify the HW resources
       vmware_guest:
         hostname: "{{ vcsa.hostname }}"
@@ -41,9 +57,29 @@
         name: "{{ panos_s.hostname }}"
         state: "poweredon"
         validate_certs: False
+    - name: Wait for PAN-OS to be ready
+      panos_check:
+        ip_address: "{{ panos_s.ip_address }}"
+        username: "{{ lic.username }}"
+        password: "{{ lic.password }}"
+      register: result
+      until: not result is failed
+      retries: 20
+      delay: 30
     - name: License the PA-VM with the new Model
       panos_lic:
         ip_address: "{{ panos_s.ip_address }}"
         username: "{{ lic.username }}"
         password: "{{ lic.password }}"
         auth_code: "{{ lic.authcode_vm100 }}"
+      register: result_new
+    - name: New serial number is
+      debug:
+        var: "{{result_new.serialnumber}}"
+    - name: replace the device serialnumber in Panorama
+      panos_replace_device_sn_panorama:
+        panorama_ip_address: "{{ panos_s.panorama_server }}"
+        username: "{{ lic.panorama_username }}"
+        password: "{{ lic.panorama_password }}"
+        old_sn: "{{ result_old.serialnumber }}"
+        new_sn: "{{ result_new.serialnumber }}"

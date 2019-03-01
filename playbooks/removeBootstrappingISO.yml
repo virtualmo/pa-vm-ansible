@@ -5,43 +5,6 @@
   vars_files:
     - ../variables.yml
   tasks:
-    - name: Wait for bootstrapping to finish
-      panos_check:
-        ip_address: "{{ panos_s.ip_address }}"
-        username: "{{ lic.username }}"
-        password: "{{ lic.password }}" 
-      register: result
-      until: not result is failed
-      retries: 20
-      delay: 30
-    - name: Shutdown PA-VM VNF
-      vmware_guest:
-        hostname: "{{ vcsa.hostname }}"
-        username: "{{ vcsa.username }}"
-        password: "{{ vcsa.password }}"
-        datacenter: "{{ vcsa.datacenter }}"
-        resource_pool: "{{ vnf.resource_pool }}"
-        folder: "/vm/{{ vnf.resource_pool }}"
-        cluster: "{{ vcsa.cluster }}"
-        name: "{{ panos_s.hostname }}"
-        state: "poweredoff"
-        validate_certs: False
-    - name: Dettach the bootstrapping ISO to the PA-VM VNF
-      vmware_guest:
-        hostname: "{{ vcsa.hostname }}"
-        username: "{{ vcsa.username }}"
-        password: "{{ vcsa.password }}"
-        datacenter: "{{ vcsa.datacenter }}"
-        cluster: "{{ vcsa.cluster }}"
-        resource_pool: "{{ vnf.resource_pool }}"
-        folder: "/{{ vnf.resource_pool }}"
-        name: "{{ panos_s.hostname }}"
-        state: "present"
-        validate_certs: False
-        force: yes
-        cdrom:
-          type: none
-      register: output
     - name: Remove the bootstrapping ISO from the datastore
       vsphere_file:
         host: "{{ vcsa.hostname }}"
@@ -49,18 +12,8 @@
         password: "{{ vcsa.password }}"
         datacenter: "{{ vcsa.datacenter }}"
         datastore: "{{ vcsa.datastore }}"
-        path: "/bts_{{ panos_s.ip_address }}.iso"
+        path: "{{ item.path }}"
         validate_certs: False
         state: absent
-    - name: Power on the PA-VM VNF
-      vmware_guest:
-        hostname: "{{ vcsa.hostname }}"
-        username: "{{ vcsa.username }}"
-        password: "{{ vcsa.password }}"
-        datacenter: "{{ vcsa.datacenter }}"
-        resource_pool: "{{ vnf.resource_pool }}"
-        folder: "/vm/{{ vnf.resource_pool }}"
-        cluster: "{{ vcsa.cluster }}"
-        name: "{{ panos_s.hostname }}"
-        state: "poweredon"
-        validate_certs: False
+      with_items:
+        - { path: "/bts_{{ panos_s.ip_address }}.iso" }

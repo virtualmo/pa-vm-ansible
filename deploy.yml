@@ -2,4 +2,3 @@
 - import_playbook: playbooks/prepareBootstrappingISO.yml
 - import_playbook: playbooks/prepareEnvironment.yml
 - import_playbook: playbooks/deployVNF.yml
-- import_playbook: playbooks/removeBootstrappingISO.yml
