@@ -12,3 +12,5 @@
         password: "{{ lic.password }}"
         auto: True
         api_key: "{{ lic.api_key }}"
+    - pause:
+        seconds: 10

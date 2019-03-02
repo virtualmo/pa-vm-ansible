@@ -101,9 +101,9 @@ def get_serial(xapi, module):
 
 def apply_authcode(xapi, module, auth_code):
     try:
-        xapi.op(cmd='request license fetch auth-code "%s"' % auth_code,
-                cmd_xml=True)
+        xapi.op(cmd='<request><license><fetch><auth-code>%s</auth-code></fetch></license></request>' % auth_code)
     except pan.xapi.PanXapiError:
+        module.exit_json(changed=True, msg=xapi.xml_document)
         if hasattr(xapi, 'xml_document'):
             if 'Successfully' in xapi.xml_document:
                 return

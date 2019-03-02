@@ -50,3 +50,15 @@
         name: "{{ panos_s.hostname }}"
         state: "poweredon"
         validate_certs: False
+    - name: Wait for PAN-OS to be ready
+      panos_check:
+        ip_address: "{{ panos_s.ip_address }}"
+        username: "{{ lic.username }}"
+        password: "{{ lic.password }}"
+      register: result
+      until: not result is failed
+      retries: 20
+      delay: 30
+    - name: Device is ready
+      debug: 
+        msg: "Device is ready. Please go to https://{{ panos_s.ip_address }} and login "

@@ -21,6 +21,8 @@
         password: "{{ lic.password }}"
         auto: True
         api_key: "{{ lic.api_key }}"
+    - pause:
+        seconds: 10
     - name: Shutdown PA-VM VNF in order to modify the HW resources
       vmware_guest:
         hostname: "{{ vcsa.hostname }}"
@@ -72,6 +74,23 @@
         username: "{{ lic.username }}"
         password: "{{ lic.password }}"
         auth_code: "{{ lic.authcode_vm100 }}"
+        force: True
+    - pause:
+        seconds: 10
+    - name: Wait for PAN-OS to be ready
+      panos_check:
+        ip_address: "{{ panos_s.ip_address }}"
+        username: "{{ lic.username }}"
+        password: "{{ lic.password }}"
+      register: result
+      until: not result is failed
+      retries: 20
+      delay: 30
+    - name: Get new Serial Number
+      panos_get_sn:
+        fw_ip_address: "{{ panos_s.ip_address }}"
+        fw_password: "{{ lic.username }}"
+        fw_username: "{{ lic.password }}"
       register: result_new
     - name: New serial number is
       debug:
@@ -83,3 +102,6 @@
         password: "{{ lic.panorama_password }}"
         old_sn: "{{ result_old.serialnumber }}"
         new_sn: "{{ result_new.serialnumber }}"
+    - name: Device is ready
+      debug: 
+        msg: "Device is ready. Please go to https://{{ panos_s.ip_address }} and login "
