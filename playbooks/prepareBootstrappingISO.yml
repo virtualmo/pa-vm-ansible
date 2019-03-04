@@ -1,7 +1,7 @@
 ---
 - name: Prepare PA-VM VNF Bootstrapping ISO and upload it to the datastore
   hosts: localhost
-  gather_facts: False
+  gather_facts: True
   vars_files:
     - ../variables.yml
   tasks:
