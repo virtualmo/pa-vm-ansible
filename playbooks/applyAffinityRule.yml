@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - ../variablesHA.yml
+    - ../variables.yml
   tasks:
     - name: Apply VM-VM Anti-Affinity rule
       vmware_guest:

@@ -40,8 +40,12 @@
         state: present
         create: yes
         line: "{{ lic.authcode_vm50 }}"
-    - name: Burn an ISO image
+    - name: Burn an ISO image (MacOS hdiutil)
       command: hdiutil makehybrid -o {{ bts.path }}/bts_{{ panos_s.ip_address }}.iso {{ bts.path }}/bts -iso -joliet
+      when: ansible_os_family == "Darwin"
+    - name: Burn an ISO image (Linux mkisofs)
+      command: mkisofs -J -o {{ bts.path }}/bts_{{ panos_s.ip_address }}.iso {{ bts.path }}/bts
+      when: ansible_os_family == "CentOS" or ansible_os_family == "Redhat" or ansible_os_family == "Debian"
     - name: Upload the ISO to the Datastore
       vsphere_copy: 
         host: "{{ vcsa.hostname }}" 

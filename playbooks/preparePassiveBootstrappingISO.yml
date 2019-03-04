@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - ../variablesHA.yml
+    - ../variables.yml
   tasks:
     - name: Create the bootstrapping directory structure
       file:
@@ -40,8 +40,12 @@
         state: present
         create: yes
         line: "{{ lic.authcode_vm50 }}"
-    - name: Burn an ISO image
+    - name: Burn an ISO image (MacOS hdiutil)
       command: hdiutil makehybrid -o {{ bts.path }}/bts_passive_{{ panos_ha.p_ip }}.iso {{ bts.path }}/bts -iso -joliet
+      when: ansible_os_family == "Darwin"
+    - name: Burn an ISO image (Linux mkisofs)
+      command: mkisofs -J -o {{ bts.path }}/bts_passive_{{ panos_ha.p_ip }}.iso {{ bts.path }}/bts
+      when: ansible_os_family == "CentOS" or ansible_os_family == "Redhat" or ansible_os_family == "Debian"
     - name: Upload the ISO to the Datastore
       vsphere_copy: 
         host: "{{ vcsa.hostname }}" 
