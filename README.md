@@ -4,10 +4,10 @@
 The following use cases can be accomplished via this ansible playbooks.
 1- Deploy Standalone PA-VM
 Using **deploy.yml** playbooks, you can deploy standalone PA-VM.
-![Standalone](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/Deploy.png)
+![Standalone](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/others/Deploy.png)
 
 **deploy.yml** playbook does the following tasks:
-⋅⋅1. Prepare the bootstrapping iso file required to bootstrap PAN-OS and Upload the image to the datastore. More information about bootstrapping can found at PAN-OS [Admin Guide](https://docs.paloaltonetworks.com/vm-series/8-1/vm-series-deployment/bootstrap-the-vm-series-firewall.html#).
+⋅⋅1- Prepare the bootstrapping iso file required to bootstrap PAN-OS and Upload the image to the datastore. More information about bootstrapping can found at PAN-OS [Admin Guide](https://docs.paloaltonetworks.com/vm-series/8-1/vm-series-deployment/bootstrap-the-vm-series-firewall.html#).
 ⋅⋅2. Prepare the environment at the vSphere by creating Folder, Resource Pool, and port groups.
 ⋅⋅3. Deploy the PA-VM from datastore template. And attach the bootstrapping ISO.
 ⋅⋅4. The PA-VM will automatically start the bootstrapping process and retrieve the licenses from Palo Alto Networks License Server.
@@ -15,7 +15,7 @@ Using **deploy.yml** playbooks, you can deploy standalone PA-VM.
 
 2- Scale UP or Scale Down the PA-VM
 Using **scaleUp.yml** and **scaleUp.yml** you can scale up or scale down the PA-VM model. For example, you can scale up from VM-50 to VM-100 or from VM-100 to VM-50
-![Scaling](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/ScaleUP_DOWN.png)
+![Scaling](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/others/ScaleUP_DOWN.png)
 
 **scaleUp.yml** and **scaleUp.yml** playbooks do the following tasks:
 ⋅⋅1. Deactivate the old model license.
@@ -33,7 +33,7 @@ Using **remove.yml** you can remove the deployment. The playbooks will do the fo
 4- Deploy and remove PA-VM Active/Passive HA Cluster.
 Using **deployHA.yml** and **removeHA.yml** you can deploy active/passive HA cluster. The playbook will also make sure every PA-VM run in separate host by applying VM/Host affinity rule.
 
-[HA](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/DeployHA.png)
+[HA](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/others/DeployHA.png)
 
 **deployHA.yml** does the following tasks:
 ⋅⋅1. Prepare the bootstrapping iso file required to bootstrap PAN-OS and Upload the image to the datastore. More information about bootstrapping can found at PAN-OS [Admin Guide](https://docs.paloaltonetworks.com/vm-series/8-1/vm-series-deployment/bootstrap-the-vm-series-firewall.html#).
