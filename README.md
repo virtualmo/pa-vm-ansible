@@ -7,6 +7,7 @@ Using **deploy.yml** playbooks, you can deploy standalone PA-VM.
 ![Standalone](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/others/Deploy.png)
 
 **deploy.yml** playbook does the following tasks:
+
 	1. Prepare the bootstrapping iso file required to bootstrap PAN-OS and Upload the image to the datastore. More information about bootstrapping can found at PAN-OS [Admin Guide](https://docs.paloaltonetworks.com/vm-series/8-1/vm-series-deployment/bootstrap-the-vm-series-firewall.html#).
 	
 	2. Prepare the environment at the vSphere by creating Folder, Resource Pool, and port groups.
