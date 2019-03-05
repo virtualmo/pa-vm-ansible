@@ -1,56 +1,64 @@
+#
+# melamin@paloaltonetworks.com
+#
+
+# vCenter information
 vcsa:
-  hostname: '10.197.140.102'
-  username: 'ansible@panlab.local'
-  password: 'Ansible!123'
-  datacenter: 'PanLab'
-  cluster: 'Cluster_others'
-  datastore: 'DS_Local_OpenStack'
+  hostname: 'VCNETER_IP_ADDRESS'
+  username: 'VCENTER_USERNAME'
+  password: 'VCENTER_PASSWORD'
+  datacenter: 'VCENTER_DATACENTER_NAME'
+  cluster: 'VCENTER_CLUSTER_NAME'
+  datastore: 'VCENTER_DATASTORE_NAME'
 
+# Enviroment information
 vnf:
-  mgmt_pg_name: 'VM Network'
-  untrust_pg_name: 'vnf-untrust-pg'
-  trust_pg_name: 'vnf-trust-pg'
-  ha2_pg_name: 'vnf-ha2-pg'
-  switch_name: 'PanOthers-DSwitch'
-  resource_pool: 'PA-VM-VNF-Demo-Pool'
-  template_name: 'pavmvnf-8.1.2-vm-50'
+  mgmt_pg_name: 'MANAGMENT_PORTGROUP_NAME'
+  untrust_pg_name: 'UNTRUST_PORTGROUP_NAME'
+  trust_pg_name: 'TRUST_PORTGROUP_NAME'
+  ha2_pg_name: 'HA2_PORTGROUP_NAME'
+  switch_name: 'DVSWITCH_NAME'
+  resource_pool: 'RESOURCE_POOL_NAME'
+  template_name: 'PA_VM_BASEIMAGE_TEMPLATE'
 
+# Path to the local directory that will be host the bootstrapping pacakge (For exampel /tmp/ 
 bts:
-  path: '/tmp/'
+  path: '/PATH/TO/BOOTSTRAPPING/FOLDER'
 
+# This section for the bootstrapping information for standalone PA-VM deployment  
 panos_s:
-  hostname: 'PAN_NGFW_VNF'
-  ip_address: '10.197.140.156'
-  netmask: '255.255.255.0'
-  default_gateway: '10.197.140.1'
-  dns_primary: '8.8.8.8'
-  dns_secondary: '4.2.2.2'
-  panorama_server: '10.197.140.155'
-  tplname: 'VNF-Template-Stack'
-  dgname: 'VNF-DG'
-  vm_auth_key: '232811479756948'
+  hostname: 'PA-VM_HOSTNAME'
+  ip_address: 'PA-VM_MGMT_IP'
+  netmask: 'PA-VM_MGMT_NETMASK'
+  default_gateway: 'PA-VM_MGMT_GATEWAY'
+  dns_primary: 'PA-VM_PRIMARY_DNS'
+  dns_secondary: 'PA-VM_SECONDARY_DNS'
+  panorama_server: 'PANROAMA_IP'
+  tplname: 'PANORAMA_TEMPLATE_STACK_NAME'
+  dgname: 'PANORAMA_DEVICE_GROUP_NAME'
+  vm_auth_key: 'PANORAMA_VM_AUTHENTICATION_KEY'
 
+# This section for the bootstrapping information for A/P PA-VM Cluster deployment
 panos_ha:
-  a_hostname: 'PAN_NGFW_VNF_A'
-  a_ip: '10.197.140.157'
-  a_tplname: 'VNF-Template-Stack-A'
-  p_hostname: 'PAN_NGFW_VNF_B'
-  p_ip: '10.197.140.158'
-  p_tplname: 'VNF-Template-Stack-B'
-  netmask: '255.255.255.0'
-  default_gateway: '10.197.140.1'
-  dns_primary: '8.8.8.8'
-  dns_secondary: '4.2.2.2'
-  panorama_server: '10.197.140.155'
-  dgname: 'VNF-HA-DG'
-  vm_auth_key: '232811479756948'
-  vnf_affinity_rule: 'VNF_affinity_rule_01'
+  a_hostname: 'ACTIVE_PA-VM_HOSTNAME'
+  a_ip: 'ACTIVE_PA-VM_MGMT_IP'
+  a_tplname: 'ACTIVE_PANORAMA_TEMPLATE_STACK_NAME'
+  p_hostname: 'PASSIVE_PA-VM_HOSTNAME'
+  p_ip: 'PASSIVE_PA-VM_MGMT_IP'
+  p_tplname: 'PASSIVE_PANORAMA_TEMPLATE_STACK_NAME'
+  netmask: 'PA-VM_MGMT_NETMASK'
+  default_gateway: 'PA-VM_MGMT_GATEWAY'
+  dns_primary: 'PA-VM_PRIMARY_DNS'
+  dns_secondary: 'PA-VM_SECONDARY_DNS'
+  panorama_server: 'PANROAMA_IP'
+  dgname: 'PANORAMA_DEVICE_GROUP_NAME'
+  vm_auth_key: 'PANORAMA_VM_AUTHENTICATION_KEY'
+  vnf_affinity_rule: 'VCENTER_VM_VM_AFFINITY_RULE_NAME'
 
+# This section for the license activation and deactiviation. 
 lic:
-  username: 'admin'
-  password: 'admin'
-  panorama_username: 'admin'
-  panorama_password: 'paloalto'
-  authcode_vm50: 'I6173457'
-  authcode_vm100: 'I6553006'
-  api_key: '6a85f78e5cd9a7eccae9333361f3cbd798ee1e8c70bad9dfeb027f345e562d2d'
+  username: 'PA-VM_USERNAME'
+  password: 'PA-VM_PASSWORD'
+  authcode_vm50: 'AUTH_CODE'
+  authcode_vm100: 'AUTH_CODE'
+  api_key: 'API_KEY'
