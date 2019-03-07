@@ -108,6 +108,8 @@ Using **removeHA.yml** does the following tasks:
 	ansible-playbook deploy.yml
 	```
 
+- The file name Panorama-config.xml contain example Panorama configuration that is required for all the use cases [Panorama Configuration](https://raw.githubusercontent.com/mohanadelamin/pa-vm-ansible/master/Panorama-config.xml) 
+
 ## Disclaimer
 
 These playbooks is supplied "AS IS" without any warranties and support.

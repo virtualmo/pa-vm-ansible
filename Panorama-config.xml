@@ -1,0 +1,1280 @@
+<?xml version="1.0"?>
+<config version="8.1.0" urldb="paloaltonetworks">
+  <mgt-config>
+    <devices/>
+    <users>
+      <entry name="admin">
+        <phash>$1$xyogwtkb$QJLQaQ4lJr1Ux.ohiHj2S0</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+      </entry>
+    </users>
+  </mgt-config>
+  <shared>
+    <content-preview>
+      <application>
+        <entry id="2467" minver="5.0.0" name="blind" ori_country="USA" ori_language="English">
+          <category>collaboration</category>
+          <subcategory>social-networking</subcategory>
+          <technology>browser-based</technology>
+          <description>Blind is an anonymous social networking platform for professionals Teamblind.</description>
+          <appident>yes</appident>
+          <virus-ident>yes</virus-ident>
+          <spyware-ident>yes</spyware-ident>
+          <file-type-ident>yes</file-type-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>yes</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <file-forward>yes</file-forward>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="teamblind">
+              <link>https://www.teamblind.com/about</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/443</member>
+            </port>
+          </default>
+          <use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <implicit-use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </implicit-use-applications>
+          <risk>2</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2525" minver="5.0.0" name="linkedin-learning" ori_country="USA" ori_language="English">
+          <category>media</category>
+          <subcategory>photo-video</subcategory>
+          <technology>browser-based</technology>
+          <description>LinkedIn Learning (formerly lynda.com) is an American massive open online course website offering video courses taught by industry experts in software, creative, and business skills. It is a subsidiary of LinkedIn.</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="LinkedIn Learning">
+              <link>https://www.linkedin.com/learning/me</link>
+            </entry>
+            <entry name="Lynda.com">
+              <link>https://www.lynda.com/</link>
+            </entry>
+            <entry name="Wikipedia">
+              <link>https://en.wikipedia.org/wiki/LinkedIn_Learning</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications>
+            <member>linkedin-base</member>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <tunnel-applications minver="5.0.0">
+            <member minver="5.0.0">linkedin-learning-downloading</member>
+            <member minver="5.0.0">linkedin-learning-editing</member>
+            <member minver="5.0.0">linkedin-learning-posting</member>
+            <member minver="5.0.0">linkedin-learning-video</member>
+          </tunnel-applications>
+          <implicit-use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </implicit-use-applications>
+          <applicable-decoders>
+            <member>http</member>
+            <member>ssl</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2527" minver="5.0.0" name="linkedin-learning-downloading" ori_country="USA" ori_language="English">
+          <category>media</category>
+          <subcategory>photo-video</subcategory>
+          <technology>browser-based</technology>
+          <description>This App-ID identifies the downloading activity of Linkedin Learning, including assignment download and notes export except Course Video downloading (caching).</description>
+          <appident>yes</appident>
+          <virus-ident>yes</virus-ident>
+          <spyware-ident>yes</spyware-ident>
+          <file-type-ident>yes</file-type-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>yes</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <file-forward>yes</file-forward>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="Wikipedia">
+              <link>https://en.wikipedia.org/wiki/LinkedIn_Learning</link>
+            </entry>
+            <entry name="LinkedIn Learning">
+              <link>https://www.linkedin.com/learning/me</link>
+            </entry>
+            <entry name="Lynda.com">
+              <link>https://www.lynda.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">linkedin-learning</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>2</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2529" minver="5.0.0" name="linkedin-learning-editing" ori_country="USA" ori_language="English">
+          <category>media</category>
+          <subcategory>photo-video</subcategory>
+          <technology>browser-based</technology>
+          <description>This App-ID identifies the editing activity of Linkedin Learning, including modifying course notes, changing interested skill set, changing course status, and adding/removing bookmarks on courses.</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="LinkedIn Learning">
+              <link>https://www.linkedin.com/learning/me</link>
+            </entry>
+            <entry name="Wikipedia">
+              <link>https://en.wikipedia.org/wiki/LinkedIn_Learning</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">linkedin-learning</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2528" minver="5.0.0" name="linkedin-learning-posting" ori_country="USA" ori_language="English">
+          <category>media</category>
+          <subcategory>photo-video</subcategory>
+          <technology>browser-based</technology>
+          <description>This App-ID identifies the posting activity of Linkedin Learning, including posting questions in Q&amp;amp;A section, posting course notes, and posting feedback to courses.</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="LinkedIn Learning">
+              <link>https://www.linkedin.com/learning/me</link>
+            </entry>
+            <entry name="Wikipedia">
+              <link>https://en.wikipedia.org/wiki/LinkedIn_Learning</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">linkedin-learning</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2531" minver="5.0.0" name="linkedin-learning-video" ori_country="USA" ori_language="English">
+          <category>media</category>
+          <subcategory>photo-video</subcategory>
+          <technology>browser-based</technology>
+          <description>This App-ID identifies the video streaming activity of Linkedin Learning ,including online watching and course video downloading (pre-caching).</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="LinkedIn Learning">
+              <link>https://www.linkedin.com/learning/me</link>
+            </entry>
+            <entry name="Lynda.com">
+              <link>https://www.lynda.com/</link>
+            </entry>
+            <entry name="Wikipedia">
+              <link>https://en.wikipedia.org/wiki/LinkedIn_Learning</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications>
+            <member minver="5.0.0">linkedin-learning</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <implicit-use-applications>
+            <member>web-browsing</member>
+          </implicit-use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2536" minver="5.0.0" name="octopus" ori_country="USA" ori_language="English">
+          <category>business-systems</category>
+          <subcategory>software-development</subcategory>
+          <technology>browser-based</technology>
+          <description>Octopus Deploy provides easily automate application deployments. This app-id covers the  traffic of cloud-based Octopus web portal.</description>
+          <appident>yes</appident>
+          <virus-ident>yes</virus-ident>
+          <spyware-ident>yes</spyware-ident>
+          <file-type-ident>yes</file-type-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>yes</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <file-forward>yes</file-forward>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="octopus">
+              <link>https://octopus.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <risk>2</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2001" minver="5.0.0" name="tiktok" ori_country="USA" ori_language="English">
+          <category>media</category>
+          <subcategory>photo-video</subcategory>
+          <technology>client-server</technology>
+          <description>TikTok is a video social network app for video creation, messaging, and live broadcasting. TikTok, also known as Douyin in China.</description>
+          <appident>yes</appident>
+          <virus-ident>yes</virus-ident>
+          <spyware-ident>yes</spyware-ident>
+          <file-type-ident>yes</file-type-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>yes</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <file-forward>yes</file-forward>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="Wikipedia">
+              <link>https://en.wikipedia.org/wiki/TikTok</link>
+            </entry>
+            <entry name="TikTok">
+              <link>https://www.tiktok.com</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443,1935</member>
+            </port>
+          </default>
+          <use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+            <member>rtmp</member>
+            <member>ssl</member>
+          </applicable-decoders>
+          <risk>2</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2472" minver="5.0.0" name="yelp-editing" ori_country="USA" ori_language="English">
+          <category>business-systems</category>
+          <subcategory>general-business</subcategory>
+          <technology>browser-based</technology>
+          <description>Yelp is a local-search service powered by crowd-sourced review forum run by an American multinational corporation. This app-id identifies editing activity from the yelp.</description>
+          <appident>yes</appident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="wikipedia">
+              <link>https://en.wikipedia.org/wiki/Yelp</link>
+            </entry>
+            <entry name="yelp">
+              <link>https://www.yelp.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">yelp-base</member>
+            <member minver="5.0.0">yelp-posting</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2441" minver="5.0.0" name="yelp-base" ori_country="USA" ori_language="English">
+          <ottawa-name>yelp</ottawa-name>
+          <category>business-systems</category>
+          <subcategory>general-business</subcategory>
+          <technology>browser-based</technology>
+          <description>Yelp is a local-search service powered by crowd-sourced review forum run by an American multinational corporation. This app-id identifies traffic from the yelp application.</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="wikipedia">
+              <link>https://en.wikipedia.org/wiki/Yelp</link>
+            </entry>
+            <entry name="yelp">
+              <link>https://www.yelp.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <tunnel-applications minver="5.0.0">
+            <member minver="5.0.0">yelp-editing</member>
+            <member minver="5.0.0">yelp-posting</member>
+            <member minver="5.0.0">yelp-sharing</member>
+            <member minver="5.0.0">yelp-uploading</member>
+          </tunnel-applications>
+          <implicit-use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </implicit-use-applications>
+          <applicable-decoders>
+            <member>http</member>
+            <member>ssl</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <application-container>yelp</application-container>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2441" minver="5.0.0" ori_country="USA" ori_language="English" name="yelp">
+          <ottawa-name>yelp</ottawa-name>
+          <category>business-systems</category>
+          <subcategory>general-business</subcategory>
+          <technology>browser-based</technology>
+          <description>Yelp is a local-search service powered by crowd-sourced review forum run by an American multinational corporation. This app-id identifies traffic from the yelp application.</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="wikipedia">
+              <link>https://en.wikipedia.org/wiki/Yelp</link>
+            </entry>
+            <entry name="yelp">
+              <link>https://www.yelp.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </use-applications>
+          <tunnel-applications minver="5.0.0">
+            <member minver="5.0.0">yelp-editing</member>
+            <member minver="5.0.0">yelp-posting</member>
+            <member minver="5.0.0">yelp-sharing</member>
+            <member minver="5.0.0">yelp-uploading</member>
+          </tunnel-applications>
+          <implicit-use-applications>
+            <member>ssl</member>
+            <member>web-browsing</member>
+          </implicit-use-applications>
+          <applicable-decoders>
+            <member>http</member>
+            <member>ssl</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <application-container>yelp</application-container>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2469" minver="5.0.0" name="yelp-posting" ori_country="USA" ori_language="English">
+          <category>business-systems</category>
+          <subcategory>general-business</subcategory>
+          <technology>browser-based</technology>
+          <description>Yelp is a local-search service powered by crowd-sourced review forum run by an American multinational corporation. This app-id identifies posting activity from the yelp.</description>
+          <appident>yes</appident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="wikipedia">
+              <link>https://en.wikipedia.org/wiki/Yelp</link>
+            </entry>
+            <entry name="yelp">
+              <link>https://www.yelp.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">yelp-base</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2468" minver="5.0.0" name="yelp-sharing" ori_country="USA" ori_language="English">
+          <category>business-systems</category>
+          <subcategory>general-business</subcategory>
+          <technology>browser-based</technology>
+          <description>Yelp is a local-search service powered by crowd-sourced review forum run by an American multinational corporation. This app-id identifies sharing activity from the yelp.</description>
+          <appident>yes</appident>
+          <spyware-ident>yes</spyware-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>no</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <cachable>no</cachable>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="wikipedia">
+              <link>https://en.wikipedia.org/wiki/Yelp</link>
+            </entry>
+            <entry name="yelp">
+              <link>https://www.yelp.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">yelp-base</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>1</risk>
+          <preview>yes</preview>
+        </entry>
+        <entry id="2459" minver="5.0.0" name="yelp-uploading" ori_country="USA" ori_language="English">
+          <category>business-systems</category>
+          <subcategory>general-business</subcategory>
+          <technology>browser-based</technology>
+          <description>Yelp is a local-search service powered by crowd-sourced review forum run by an American multinational corporation. This app-id identifies uploading activity from the yelp.</description>
+          <appident>yes</appident>
+          <virus-ident>yes</virus-ident>
+          <spyware-ident>yes</spyware-ident>
+          <file-type-ident>yes</file-type-ident>
+          <vulnerability-ident>yes</vulnerability-ident>
+          <evasive-behavior>no</evasive-behavior>
+          <consume-big-bandwidth>no</consume-big-bandwidth>
+          <used-by-malware>no</used-by-malware>
+          <able-to-transfer-file>yes</able-to-transfer-file>
+          <has-known-vulnerability>yes</has-known-vulnerability>
+          <tunnel-other-application>no</tunnel-other-application>
+          <prone-to-misuse>no</prone-to-misuse>
+          <pervasive-use>no</pervasive-use>
+          <per-direction-regex>no</per-direction-regex>
+          <deny-action>drop-reset</deny-action>
+          <data-ident>yes</data-ident>
+          <cachable>no</cachable>
+          <file-forward>yes</file-forward>
+          <can-disable>yes</can-disable>
+          <new-appid>yes</new-appid>
+          <references>
+            <entry name="wikipedia">
+              <link>https://en.wikipedia.org/wiki/Yelp</link>
+            </entry>
+            <entry name="yelp">
+              <link>https://www.yelp.com/</link>
+            </entry>
+          </references>
+          <default>
+            <port>
+              <member>tcp/80,443</member>
+            </port>
+          </default>
+          <use-applications minver="5.0.0">
+            <member minver="5.0.0">yelp-base</member>
+          </use-applications>
+          <applicable-decoders>
+            <member>http</member>
+          </applicable-decoders>
+          <risk>2</risk>
+          <preview>yes</preview>
+        </entry>
+      </application>
+      <application-type>
+        <category/>
+        <technology/>
+      </application-type>
+    </content-preview>
+  </shared>
+  <devices>
+    <entry name="localhost.localdomain">
+      <deviceconfig>
+        <system>
+          <ip-address>10.197.140.155</ip-address>
+          <netmask>255.255.255.0</netmask>
+          <update-server>updates.paloaltonetworks.com</update-server>
+          <update-schedule>
+            <threats>
+              <recurring>
+                <weekly>
+                  <day-of-week>wednesday</day-of-week>
+                  <at>01:02</at>
+                  <action>download-only</action>
+                </weekly>
+              </recurring>
+            </threats>
+          </update-schedule>
+          <timezone>US/Pacific</timezone>
+          <service>
+            <disable-telnet>yes</disable-telnet>
+            <disable-http>yes</disable-http>
+          </service>
+          <hostname>Panorama-CE-Lab</hostname>
+          <default-gateway>10.197.140.1</default-gateway>
+          <dns-setting>
+            <servers>
+              <primary>4.2.2.2</primary>
+            </servers>
+          </dns-setting>
+          <login-banner>Panorama CE Lab EU</login-banner>
+        </system>
+        <setting>
+          <management>
+            <storage-partition>
+              <internal/>
+            </storage-partition>
+            <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+          </management>
+        </setting>
+      </deviceconfig>
+      <template>
+        <entry name="VNF-Template">
+          <settings>
+            <default-vsys>vsys1</default-vsys>
+          </settings>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <vsys>
+                  <entry name="vsys1">
+                    <zone>
+                      <entry name="Untrust">
+                        <network>
+                          <layer3>
+                            <member>ethernet1/1</member>
+                          </layer3>
+                        </network>
+                      </entry>
+                      <entry name="Trust">
+                        <network>
+                          <layer3>
+                            <member>ethernet1/2</member>
+                          </layer3>
+                        </network>
+                      </entry>
+                    </zone>
+                    <import>
+                      <network>
+                        <interface>
+                          <member>ethernet1/1</member>
+                          <member>ethernet1/2</member>
+                        </interface>
+                      </network>
+                    </import>
+                  </entry>
+                </vsys>
+                <network>
+                  <virtual-router>
+                    <entry name="VNF-VR">
+                      <ecmp>
+                        <algorithm>
+                          <ip-modulo/>
+                        </algorithm>
+                      </ecmp>
+                      <protocol>
+                        <bgp>
+                          <routing-options>
+                            <graceful-restart>
+                              <enable>yes</enable>
+                            </graceful-restart>
+                          </routing-options>
+                          <enable>no</enable>
+                        </bgp>
+                        <rip>
+                          <enable>no</enable>
+                        </rip>
+                        <ospf>
+                          <enable>no</enable>
+                        </ospf>
+                        <ospfv3>
+                          <enable>no</enable>
+                        </ospfv3>
+                      </protocol>
+                      <interface>
+                        <member>ethernet1/1</member>
+                        <member>ethernet1/2</member>
+                      </interface>
+                    </entry>
+                  </virtual-router>
+                  <profiles>
+                    <interface-management-profile>
+                      <entry name="allow_ping">
+                        <ping>yes</ping>
+                      </entry>
+                    </interface-management-profile>
+                  </profiles>
+                  <interface>
+                    <ethernet>
+                      <entry name="ethernet1/1">
+                        <layer3>
+                          <ipv6>
+                            <neighbor-discovery>
+                              <router-advertisement>
+                                <enable>no</enable>
+                              </router-advertisement>
+                            </neighbor-discovery>
+                          </ipv6>
+                          <ndp-proxy>
+                            <enabled>no</enabled>
+                          </ndp-proxy>
+                          <ip>
+                            <entry name="172.16.210.1/24"/>
+                          </ip>
+                          <interface-management-profile>allow_ping</interface-management-profile>
+                          <lldp>
+                            <enable>no</enable>
+                          </lldp>
+                        </layer3>
+                      </entry>
+                      <entry name="ethernet1/2">
+                        <layer3>
+                          <ipv6>
+                            <neighbor-discovery>
+                              <router-advertisement>
+                                <enable>no</enable>
+                              </router-advertisement>
+                            </neighbor-discovery>
+                          </ipv6>
+                          <ndp-proxy>
+                            <enabled>no</enabled>
+                          </ndp-proxy>
+                          <ip>
+                            <entry name="172.16.211.1/24"/>
+                          </ip>
+                          <interface-management-profile>allow_ping</interface-management-profile>
+                          <lldp>
+                            <enable>no</enable>
+                          </lldp>
+                        </layer3>
+                      </entry>
+                    </ethernet>
+                  </interface>
+                </network>
+              </entry>
+            </devices>
+          </config>
+        </entry>
+        <entry name="VNF-Template-HA">
+          <settings>
+            <default-vsys>vsys1</default-vsys>
+          </settings>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <vsys>
+                  <entry name="vsys1">
+                    <zone>
+                      <entry name="Untrust">
+                        <network>
+                          <layer3>
+                            <member>ethernet1/2</member>
+                          </layer3>
+                        </network>
+                      </entry>
+                      <entry name="Trust">
+                        <network>
+                          <layer3>
+                            <member>ethernet1/3</member>
+                          </layer3>
+                        </network>
+                      </entry>
+                    </zone>
+                    <import>
+                      <network>
+                        <interface>
+                          <member>ethernet1/2</member>
+                          <member>ethernet1/3</member>
+                        </interface>
+                      </network>
+                    </import>
+                  </entry>
+                </vsys>
+                <network>
+                  <interface>
+                    <ethernet>
+                      <entry name="ethernet1/1">
+                        <ha/>
+                      </entry>
+                      <entry name="ethernet1/2">
+                        <layer3>
+                          <ipv6>
+                            <neighbor-discovery>
+                              <router-advertisement>
+                                <enable>no</enable>
+                              </router-advertisement>
+                            </neighbor-discovery>
+                          </ipv6>
+                          <ndp-proxy>
+                            <enabled>no</enabled>
+                          </ndp-proxy>
+                          <ip>
+                            <entry name="172.16.210.1/24"/>
+                          </ip>
+                          <interface-management-profile>allow_ping</interface-management-profile>
+                          <lldp>
+                            <enable>no</enable>
+                          </lldp>
+                        </layer3>
+                      </entry>
+                      <entry name="ethernet1/3">
+                        <layer3>
+                          <ipv6>
+                            <neighbor-discovery>
+                              <router-advertisement>
+                                <enable>no</enable>
+                              </router-advertisement>
+                            </neighbor-discovery>
+                          </ipv6>
+                          <ndp-proxy>
+                            <enabled>no</enabled>
+                          </ndp-proxy>
+                          <ip>
+                            <entry name="172.16.211.1/24"/>
+                          </ip>
+                          <interface-management-profile>allow_ping</interface-management-profile>
+                          <lldp>
+                            <enable>no</enable>
+                          </lldp>
+                        </layer3>
+                      </entry>
+                    </ethernet>
+                  </interface>
+                  <virtual-router>
+                    <entry name="VNF-VR">
+                      <ecmp>
+                        <algorithm>
+                          <ip-modulo/>
+                        </algorithm>
+                      </ecmp>
+                      <protocol>
+                        <bgp>
+                          <routing-options>
+                            <graceful-restart>
+                              <enable>yes</enable>
+                            </graceful-restart>
+                          </routing-options>
+                          <enable>no</enable>
+                        </bgp>
+                        <rip>
+                          <enable>no</enable>
+                        </rip>
+                        <ospf>
+                          <enable>no</enable>
+                        </ospf>
+                        <ospfv3>
+                          <enable>no</enable>
+                        </ospfv3>
+                      </protocol>
+                      <interface>
+                        <member>ethernet1/2</member>
+                        <member>ethernet1/3</member>
+                      </interface>
+                    </entry>
+                  </virtual-router>
+                  <profiles>
+                    <interface-management-profile>
+                      <entry name="allow_ping">
+                        <ping>yes</ping>
+                      </entry>
+                    </interface-management-profile>
+                  </profiles>
+                </network>
+              </entry>
+            </devices>
+          </config>
+        </entry>
+      </template>
+      <template-stack>
+        <entry name="VNF-Template-Stack">
+          <templates>
+            <member>VNF-Template</member>
+          </templates>
+          <devices/>
+          <settings>
+            <default-vsys>vsys1</default-vsys>
+          </settings>
+        </entry>
+        <entry name="VNF-Template-Stack-A">
+          <templates>
+            <member>VNF-Template-HA</member>
+          </templates>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <deviceconfig>
+                  <high-availability>
+                    <interface>
+                      <ha1>
+                        <port>management</port>
+                      </ha1>
+                      <ha1-backup/>
+                      <ha2>
+                        <port>ethernet1/1</port>
+                        <ip-address>172.16.212.1/24</ip-address>
+                      </ha2>
+                      <ha2-backup/>
+                      <ha3/>
+                    </interface>
+                    <group>
+                      <group-id>1</group-id>
+                      <configuration-synchronization>
+                        <enabled>no</enabled>
+                      </configuration-synchronization>
+                      <peer-ip>10.197.140.158</peer-ip>
+                    </group>
+                    <enabled>yes</enabled>
+                  </high-availability>
+                </deviceconfig>
+              </entry>
+            </devices>
+          </config>
+          <devices/>
+          <settings>
+            <default-vsys>vsys1</default-vsys>
+          </settings>
+        </entry>
+        <entry name="VNF-Template-Stack-B">
+          <templates>
+            <member>VNF-Template-HA</member>
+          </templates>
+          <settings>
+            <default-vsys>vsys1</default-vsys>
+          </settings>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <deviceconfig>
+                  <high-availability>
+                    <interface>
+                      <ha1>
+                        <port>management</port>
+                      </ha1>
+                      <ha1-backup/>
+                      <ha2>
+                        <port>ethernet1/1</port>
+                        <ip-address>172.16.212.2/24</ip-address>
+                      </ha2>
+                      <ha2-backup/>
+                      <ha3/>
+                    </interface>
+                    <group>
+                      <group-id>1</group-id>
+                      <peer-ip>10.197.140.157</peer-ip>
+                      <election-option>
+                        <device-priority>200</device-priority>
+                      </election-option>
+                      <configuration-synchronization>
+                        <enabled>no</enabled>
+                      </configuration-synchronization>
+                    </group>
+                    <enabled>yes</enabled>
+                  </high-availability>
+                </deviceconfig>
+              </entry>
+            </devices>
+          </config>
+          <devices/>
+        </entry>
+      </template-stack>
+      <device-group>
+        <entry name="VNF-DG">
+          <devices/>
+          <pre-rulebase>
+            <security>
+              <rules>
+                <entry name="Allow_Trust_To_Untrust">
+                  <target>
+                    <negate>no</negate>
+                  </target>
+                  <to>
+                    <member>Untrust</member>
+                  </to>
+                  <from>
+                    <member>Trust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <log-setting>Log_Profile</log-setting>
+                </entry>
+              </rules>
+            </security>
+          </pre-rulebase>
+          <log-settings>
+            <profiles>
+              <entry name="Log_Profile">
+                <match-list>
+                  <entry name="Traffic_log">
+                    <log-type>traffic</log-type>
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </entry>
+            </profiles>
+          </log-settings>
+        </entry>
+        <entry name="VNF-HA-DG">
+          <devices/>
+          <log-settings>
+            <profiles>
+              <entry name="Log-Profile">
+                <match-list>
+                  <entry name="Forward-Traffic-Logs">
+                    <log-type>traffic</log-type>
+                    <filter>All Logs</filter>
+                    <send-to-panorama>yes</send-to-panorama>
+                  </entry>
+                </match-list>
+              </entry>
+            </profiles>
+          </log-settings>
+          <pre-rulebase>
+            <security>
+              <rules>
+                <entry name="Trust-To-Untrust">
+                  <target>
+                    <negate>no</negate>
+                  </target>
+                  <to>
+                    <member>Untrust</member>
+                  </to>
+                  <from>
+                    <member>Trust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <log-setting>Log-Profile</log-setting>
+                </entry>
+              </rules>
+            </security>
+          </pre-rulebase>
+        </entry>
+      </device-group>
+      <plugins/>
+    </entry>
+  </devices>
+  <readonly>
+    <max-internal-id>37</max-internal-id>
+    <devices>
+      <entry name="localhost.localdomain">
+        <template>
+          <entry name="VNF-Template">
+            <id>26</id>
+            <config>
+              <devices>
+                <entry name="localhost.localdomain">
+                  <vsys>
+                    <entry name="vsys1">
+                      <zone>
+                        <entry name="Untrust">
+                          <id>29</id>
+                        </entry>
+                        <entry name="Trust">
+                          <id>30</id>
+                        </entry>
+                      </zone>
+                    </entry>
+                  </vsys>
+                </entry>
+              </devices>
+            </config>
+          </entry>
+          <entry name="VNF-Template-HA">
+            <id>31</id>
+            <config>
+              <devices>
+                <entry name="localhost.localdomain">
+                  <vsys>
+                    <entry name="vsys1">
+                      <zone>
+                        <entry name="Untrust">
+                          <id>35</id>
+                        </entry>
+                        <entry name="Trust">
+                          <id>36</id>
+                        </entry>
+                      </zone>
+                    </entry>
+                  </vsys>
+                </entry>
+              </devices>
+            </config>
+          </entry>
+        </template>
+        <template-stack>
+          <entry name="VNF-Template-Stack">
+            <id>27</id>
+          </entry>
+          <entry name="VNF-Template-Stack-A">
+            <id>33</id>
+          </entry>
+          <entry name="VNF-Template-Stack-B">
+            <id>34</id>
+          </entry>
+        </template-stack>
+        <device-group>
+          <entry name="VNF-DG">
+            <id>28</id>
+          </entry>
+          <entry name="VNF-HA-DG">
+            <id>37</id>
+          </entry>
+        </device-group>
+        <plugins/>
+      </entry>
+    </devices>
+  </readonly>
+</config>

@@ -45,7 +45,7 @@
       when: ansible_os_family == "Darwin"
     - name: Burn an ISO image (Linux mkisofs)
       command: mkisofs -J -o {{ bts.path }}/bts_active_{{ panos_ha.a_ip }}.iso {{ bts.path }}/bts
-      when: ansible_os_family == "CentOS" or ansible_os_family == "Redhat" or ansible_os_family == "Debian"
+      when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
     - name: Upload the ISO to the Datastore
       vsphere_copy: 
         host: "{{ vcsa.hostname }}" 
